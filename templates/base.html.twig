@@ -14,6 +14,48 @@
         {% endblock %}
     </head>
     <body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-dark opacity-75">
+            <div class="container-fluid">
+                <h1 class="text-danger opacity-50"> MangAnime </h1>
+                <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-2 ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                        <a class="nav-link link-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Manga
+                        </a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav me-auto  mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                        <a class="nav-link link-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Anime
+                        </a>
+                        </li>
+                    </ul>
+                    <div class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="button" id="search">Search</button>
+                    </div>
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="account">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link link-light dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Connecter John Doe
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/">Home</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Deconnexion</a></li>
+                        </ul>
+                        </li>
+                        </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
         {% block body %}{% endblock %}
     </body>
 </html>
