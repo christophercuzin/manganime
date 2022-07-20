@@ -47,6 +47,11 @@
                         <li class="nav-item ms-5">
                             <a class="nav-link active link-light" aria-current="page" href="{{ path('app_logout') }}">Deconnexion</a>
                         </li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                        <li class="nav-item ms-5 me-3">
+                            <a class="nav-link active link-light" aria-current="page" href="{{ path('app_admin') }}">Gestion manga</a>
+                        </li>
+                        {% endif %}
                         {% if is_granted('ROLE_USER') %}
                         <li class="nav-item ms-5 me-3">
                             <p class="user_email text-light text-center">Bonjour ! <br> {{ app.user.email }}</p>

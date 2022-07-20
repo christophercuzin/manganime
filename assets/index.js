@@ -64,50 +64,51 @@ if (document.getElementById('card_container')) {
     // function use to create input
     function createInput(response) {
         let datas = response['data'];
+        if (document.getElementById('numberOfManga')) {
+            const numberOfManga = document.getElementById('numberOfManga');
+            for (let i = 0; i < datas.length; i++) {
+                const data = datas[i]
 
-        for (let i = 0; i < datas.length; i++) {
-            const data = datas[i]
-
-            //create all input to insert all manga fetch into DB
-            const mangaTitle = document.createElement('input');
-            const mangaNumberOfVolumes = document.createElement('input');
-            const mangaDescription = document.createElement('input');
-            const mangaStatus = document.createElement('input');
-            const mangaAuthor = document.createElement('input');
-            const mangaGenre = document.createElement('input');
-            // set type of input
-            mangaTitle.type = 'hidden';
-            mangaNumberOfVolumes.type = 'hidden';
-            mangaDescription.type = 'hidden';
-            mangaStatus.type = 'hidden';
-            mangaAuthor.type = 'hidden';
-            mangaGenre.type = 'hidden';
-            // insert data into input value
-            mangaTitle.value = data['title'];
-            mangaNumberOfVolumes.value = data['volumes'];
-            mangaDescription.value = data['synopsis'];
-            mangaStatus.value = data['status'];
-            mangaAuthor.value = data['authors'][0]['name'];
-            for (const genre of data['genres']) {
-                mangaGenre.value = mangaGenre.value + genre['name'] + ', ';
+                //create all input to insert all manga fetch into DB
+                const mangaTitle = document.createElement('input');
+                const mangaNumberOfVolumes = document.createElement('input');
+                const mangaDescription = document.createElement('input');
+                const mangaStatus = document.createElement('input');
+                const mangaAuthor = document.createElement('input');
+                const mangaGenre = document.createElement('input');
+                // set type of input
+                mangaTitle.type = 'hidden';
+                mangaNumberOfVolumes.type = 'hidden';
+                mangaDescription.type = 'hidden';
+                mangaStatus.type = 'hidden';
+                mangaAuthor.type = 'hidden';
+                mangaGenre.type = 'hidden';
+                // insert data into input value
+                mangaTitle.value = data['title'];
+                mangaNumberOfVolumes.value = data['volumes'];
+                mangaDescription.value = data['synopsis'];
+                mangaStatus.value = data['status'];
+                mangaAuthor.value = data['authors'][0]['name'];
+                for (const genre of data['genres']) {
+                    mangaGenre.value = mangaGenre.value + genre['name'] + ', ';
+                }
+                //set name of the input
+                mangaTitle.setAttribute('name', 'mangaTitle' + i);
+                mangaNumberOfVolumes.setAttribute('name', 'mangaNumberOfVolumes' + i);
+                mangaDescription.setAttribute('name', 'mangaDescription' + i);
+                mangaStatus.setAttribute('name', 'mangaStatus' + i);
+                mangaAuthor.setAttribute('name', 'mangaAuthor' + i);
+                mangaGenre.setAttribute('name', 'mangaGenre' + i);
+                // insert input into the page
+                cardContainer.appendChild(mangaTitle);
+                cardContainer.appendChild(mangaNumberOfVolumes);
+                cardContainer.appendChild(mangaDescription);
+                cardContainer.appendChild(mangaStatus);
+                cardContainer.appendChild(mangaAuthor);
+                cardContainer.appendChild(mangaGenre);
             }
-            //set name of the input
-            mangaTitle.setAttribute('name', 'mangaTitle' + i);
-            mangaNumberOfVolumes.setAttribute('name', 'mangaNumberOfVolumes' + i);
-            mangaDescription.setAttribute('name', 'mangaDescription' + i);
-            mangaStatus.setAttribute('name', 'mangaStatus' + i);
-            mangaAuthor.setAttribute('name', 'mangaAuthor' + i);
-            mangaGenre.setAttribute('name', 'mangaGenre' + i);
-            // insert input into the page
-            cardContainer.appendChild(mangaTitle);
-            cardContainer.appendChild(mangaNumberOfVolumes);
-            cardContainer.appendChild(mangaDescription);
-            cardContainer.appendChild(mangaStatus);
-            cardContainer.appendChild(mangaAuthor);
-            cardContainer.appendChild(mangaGenre);
+            // count number of manga was fetch
+            numberOfManga.value = datas.length;
         }
-        // count number of manga was fetch
-        const numberOfManga = document.getElementById('numberOfManga');
-        numberOfManga.value = datas.length;
     }
 }
