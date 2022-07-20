@@ -1,5 +1,6 @@
 if (document.getElementById('card_container')) {
    const cardContainer = document.getElementById('card_container');
+   const pageNumberButtons = document.querySelectorAll('.number_of_page_container [id]');
     const options = {
         method: 'GET',
         headers: {
@@ -8,13 +9,34 @@ if (document.getElementById('card_container')) {
         }
     };
 
-    fetch('https://api.jikan.moe/v4/manga?page=2')
+    fetch('https://api.jikan.moe/v4/manga?page=1')
     .then(response => response.json())
     .then(response => showImg(response))
-    .catch(err => console.error(err));
+
+    let i = 1;
+    for (const pageNumberButton of pageNumberButtons) {
+        pageNumberButton.addEventListener('click', (event) => {
+            let target = event.target;
+            if (target === pageNumberButton) {
+                fetch('https://api.jikan.moe/v4/manga?page=' + pageNumberButton.value )
+                .then(response => response.json())
+                .then(response => showImg(response))
+
+            }
+        })
+    }
 
     function showImg (response) {
         let datas = response['data'];
+        if ( document.getElementsByClassName('card')) {
+            const cards = document.getElementsByClassName('card');
+            for (let i = 0; i < cards.length;) {
+                const element = cards[i];
+                element.remove();
+            }
+            
+            
+        }
         for (let i = 0; i < datas.length; i++) {
             const data = datas[i]
 
@@ -35,4 +57,6 @@ if (document.getElementById('card_container')) {
             card.appendChild(img);
         }
     }
+    
+
 }

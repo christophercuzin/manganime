@@ -4,7 +4,26 @@ $dark: #000000;
 $link-light: #F2F2F2;
 body {
     background-color: white;
+    .paging_container {
+        display: flex;
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+        justify-content: center;
+        width: 100vw;
+        .number_of_page_container {
+            width: 3rem;
+            border: 1px solid $dark;
+            padding: 0;
+            .page_number {
+                background: transparent;
+                border: none;
+                width: 3rem;
+            }
+        }
+    }
     .card_container {
+        display: flex;
+        justify-content: center;
         margin-top: 15px;
         .card {
             width: 24rem;
