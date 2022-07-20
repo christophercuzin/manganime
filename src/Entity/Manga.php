@@ -21,7 +21,7 @@ class Manga
     private string $author;
 
     #[ORM\Column(nullable: true)]
-    private int $numberOfVolumes;
+    private ?int $numberOfVolumes;
 
     #[ORM\Column(type: Types::TEXT)]
     private string $description;

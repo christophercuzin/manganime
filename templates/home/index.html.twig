@@ -7,11 +7,11 @@
 
 <main id="main" class="container-fluid">
     <div class="row paging_container">
-    {% for i in 1..20 %}
-        <div class="number_of_page_container col-3">
-            <button id="page_number_{{ i }}" class="page_number" type="button" value="{{ i }}">{{ i }}</button>
-        </div>
-    {% endfor %}
+        {% for i in 1..20 %}
+            <div class="number_of_page_container col-lg-12 col-sm-3">
+                <button id="page_number_{{ i }}" class="page_number" type="button" value="{{ i }}">{{ i }}</button>
+            </div>
+        {% endfor %}
     </div>
     <div class="container">
         <div class="row card_container" id="card_container">

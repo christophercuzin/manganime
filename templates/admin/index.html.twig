@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+    <main id="main" class="container-fluid">
+        <div class="row paging_container">
+        <div class="number_of_page_container col-lg-6 col-sm-10">
+        {% for i in 1..100 %}
+                <button id="page_number_{{ i }}" class="page_number" type="button" value="{{ i }}">{{ i }}</button>
+        {% endfor %}
+        </div>
+        </div>
+        <div class="container-fluid">
+            <form method="POST" class="row card_container" id="card_container">
+                <div class="row justify-content-center">
+                    <input type="hidden" name="numberOfManga" id="numberOfManga">
+                    <button type="submit" class="btn btn-primary mb-5 col-lg-6 col-sm-6">Enregistrer</button>
+                </div>
+            </form>
+        </div>
+    </main>
+{% endblock %}
