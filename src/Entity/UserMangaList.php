@@ -2,35 +2,36 @@
 
 namespace App\Entity;
 
-use App\Repository\UsersMangaListRepository;
+use App\Repository\UserMangaListRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: UsersMangaListRepository::class)]
-class UsersMangaList
+#[ORM\Entity(repositoryClass: UserMangaListRepository::class)]
+class UserMangaList
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column()]
-    private ?int $id = null;
+    private int $id;
 
     #[ORM\Column(length: 255)]
     private string $title;
 
     #[ORM\Column]
-    private int $numberOfVolumes;
+    private int $numberOfVolume;
 
     #[ORM\Column(type: Types::ARRAY, nullable: true)]
-    private array $listOfVolumes = [];
+    private ?array $listOfVolume = [];
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $status;
 
-    #[ORM\ManyToOne(inversedBy: 'usersMangaLists')]
-    private ?User $user;
+    #[ORM\ManyToOne(inversedBy: 'userMangaLists')]
+    #[ORM\JoinColumn(nullable: false)]
+    private User $user;
 
-    #[ORM\ManyToOne]
-    private Manga $manga;
+    #[ORM\ManyToOne(inversedBy: 'userMangaLists')]
+    private ?Manga $manga;
 
     public function getId(): int
     {
@@ -49,26 +50,26 @@ class UsersMangaList
         return $this;
     }
 
-    public function getNumberOfVolumes(): int
+    public function getNumberOfVolume(): int
     {
-        return $this->numberOfVolumes;
+        return $this->numberOfVolume;
     }
 
-    public function setNumberOfVolumes(int $numberOfVolumes): self
+    public function setNumberOfVolume(int $numberOfVolume): self
     {
-        $this->numberOfVolumes = $numberOfVolumes;
+        $this->numberOfVolume = $numberOfVolume;
 
         return $this;
     }
 
-    public function getListOfVolumes(): array
+    public function getListOfVolume(): ?array
     {
-        return $this->listOfVolumes;
+        return $this->listOfVolume;
     }
 
-    public function setListOfVolumes(?array $listOfVolumes): self
+    public function setListOfVolume(?array $listOfVolume): self
     {
-        $this->listOfVolumes = $listOfVolumes;
+        $this->listOfVolume = $listOfVolume;
 
         return $this;
     }
@@ -97,12 +98,12 @@ class UsersMangaList
         return $this;
     }
 
-    public function getManga(): Manga
+    public function getManga(): ?Manga
     {
         return $this->manga;
     }
 
-    public function setManga(Manga $manga): self
+    public function setManga(?Manga $manga): self
     {
         $this->manga = $manga;
 

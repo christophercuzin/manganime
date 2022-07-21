@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\UsersMangaList;
+use App\Entity\UserMangaList;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<UsersMangaList>
+ * @extends ServiceEntityRepository<UserMangaList>
  *
- * @method UsersMangaList|null find($id, $lockMode = null, $lockVersion = null)
- * @method UsersMangaList|null findOneBy(array $criteria, array $orderBy = null)
- * @method UsersMangaList[]    findAll()
- * @method UsersMangaList[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method UserMangaList|null find($id, $lockMode = null, $lockVersion = null)
+ * @method UserMangaList|null findOneBy(array $criteria, array $orderBy = null)
+ * @method UserMangaList[]    findAll()
+ * @method UserMangaList[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class UsersMangaListRepository extends ServiceEntityRepository
+class UserMangaListRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, UsersMangaList::class);
+        parent::__construct($registry, UserMangaList::class);
     }
 
-    public function add(UsersMangaList $entity, bool $flush = false): void
+    public function add(UserMangaList $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class UsersMangaListRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(UsersMangaList $entity, bool $flush = false): void
+    public function remove(UserMangaList $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class UsersMangaListRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return UsersMangaList[] Returns an array of UsersMangaList objects
+//     * @return UserMangaList[] Returns an array of UserMangaList objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class UsersMangaListRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?UsersMangaList
+//    public function findOneBySomeField($value): ?UserMangaList
 //    {
 //        return $this->createQueryBuilder('u')
 //            ->andWhere('u.exampleField = :val')

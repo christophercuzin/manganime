@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Ma liste{% endblock %}
+
+{% block body %}
+
+
+<main id="main_list" class="container-fluid">
+    <div class="container-fluid">
+        <div class="">
+            <h1>Ma liste</h1>
+        </div>
+        <a href="{{ path('app_user_manga_list_new', {id: app.user.id}) }}">ajouté</a>
+    </div>
+
+</main>
+{% endblock %}

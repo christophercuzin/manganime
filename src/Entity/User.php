@@ -13,6 +13,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -32,12 +33,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: UsersMangaList::class)]
-    private Collection $usersMangaLists;
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserMangaList::class, orphanRemoval: true)]
+    private Collection $userMangaLists;
 
     public function __construct()
     {
         $this->usersMangaLists = new ArrayCollection();
+        $this->userMangaLists = new ArrayCollection();
     }
 
     public function getId(): int
@@ -118,20 +120,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->usersMangaLists;
     }
 
-    public function addUsersMangaList(UsersMangaList $usersMangaList): self
+    /**
+     * @return Collection<int, UserMangaList>
+     */
+    public function getUserMangaLists(): Collection
     {
-        if (!$this->usersMangaLists->contains($usersMangaList)) {
-            $this->usersMangaLists[] = $usersMangaList;
-            $usersMangaList->setUser($this);
+        return $this->userMangaLists;
+    }
+
+    public function addUserMangaList(UserMangaList $userMangaList): self
+    {
+        if (!$this->userMangaLists->contains($userMangaList)) {
+            $this->userMangaLists[] = $userMangaList;
+            $userMangaList->setUser($this);
         }
 
         return $this;
     }
 
-    public function removeUsersMangaList(UsersMangaList $usersMangaList): self
+    public function removeUserMangaList(UserMangaList $userMangaList): self
     {
-        $this->usersMangaLists->removeElement($usersMangaList);
-            
+        $this->userMangaLists->removeElement($userMangaList);
+
         return $this;
     }
 }

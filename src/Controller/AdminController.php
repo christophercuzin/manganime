@@ -15,7 +15,7 @@ class AdminController extends AbstractController
     {
         $data = array_map('trim', $request->request->all());
         if (!empty($data)) {
-        $allManga = $mangaUtils->addManga($data);
+        $mangaUtils->addManga($data);
         }
         
         return $this->render('admin/index.html.twig', [

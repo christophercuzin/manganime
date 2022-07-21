@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\MangaRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -34,6 +36,14 @@ class Manga
 
     #[ORM\Column(length: 255, nullable: true)]
     private string $picture;
+
+    #[ORM\OneToMany(mappedBy: 'manga', targetEntity: UserMangaList::class)]
+    private Collection $userMangaLists;
+
+    public function __construct()
+    {
+        $this->userMangaLists = new ArrayCollection();
+    }
 
     public function getId(): int
     {
@@ -120,6 +130,36 @@ class Manga
     public function setPicture(?string $picture): self
     {
         $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, UserMangaList>
+     */
+    public function getUserMangaLists(): Collection
+    {
+        return $this->userMangaLists;
+    }
+
+    public function addUserMangaList(UserMangaList $userMangaList): self
+    {
+        if (!$this->userMangaLists->contains($userMangaList)) {
+            $this->userMangaLists[] = $userMangaList;
+            $userMangaList->setManga($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserMangaList(UserMangaList $userMangaList): self
+    {
+        if ($this->userMangaLists->removeElement($userMangaList)) {
+            // set the owning side to null (unless already changed)
+            if ($userMangaList->getManga() === $this) {
+                $userMangaList->setManga(null);
+            }
+        }
 
         return $this;
     }

@@ -1,0 +1,35 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Ajouté manga{% endblock %}
+
+{% block body %}
+
+
+<main id="main_list" class="container-fluid">
+    <div class="container-fluid">
+    <h1>Ajouté un nouveau manga</h1>
+        <form method="POST" class="form_manga">
+            <input type="hidden" id="number_of_volume_input" name="number_of_volume_input">
+            <label for="manga_title">Title</label>
+            <input type="text" name="manga_title" id="manga_title" placeholder="berserk" required>
+
+             <label for="number_of_volume">Nombre de volume posséder</label>
+            <input type="number" name="number_of_volume" id="number_of_volume" placeholder="24" min="0" required>
+
+            <label for="status">Statut</label>
+            <select name="status" id="status" required>
+            <option value="">choisir une option</option>
+            <option value="en cours">Lecture en cours</option>
+            <option value="terminé">Terminé</option>
+            <option value="a lire">Je prevois de le lire</option>
+            </select>
+
+            <div id="list_of_volume_container">
+             <p>Selctionner les volumes posséder</p>
+            </div>
+            <button type="submit" class="btn btn-primary" id="add_new_manga">Validé</button>
+        </form>
+    </div>
+
+</main>
+{% endblock %}
