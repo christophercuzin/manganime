@@ -23,9 +23,11 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-2 ms-auto mb-2 mb-lg-0">
+                    {% if is_granted('ROLE_USER') %}
                         <li class="nav-item ms-0 ms-lg-5 me-0 me-lg-3">
-                            <a class="nav-link active link-light" aria-current="page" href="{{ path('app_user_manga_list_index') }}">Ma liste</a>
+                            <a class="nav-link active link-light" aria-current="page" href="{{ path('app_user_manga_list_index', {id: app.user.id}) }}">Ma liste</a>
                         </li>
+                    {% endif %}
                     </ul>
                     <ul class="navbar-nav me-auto  mb-2 mb-lg-0">
                         <li class="nav-item dropdown">

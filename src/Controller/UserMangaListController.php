@@ -13,11 +13,11 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/user/manga/list')]
 class UserMangaListController extends AbstractController
 {
-    #[Route('/', name: 'app_user_manga_list_index', methods: ['GET'])]
-    public function index(UserMangaListRepository $userMangaListRepository): Response
+    #[Route('/{id}', name: 'app_user_manga_list_index', methods: ['GET'])]
+    public function index(UserMangaListRepository $userMangaListRepository, User $user): Response
     {
         return $this->render('user_manga_list/index.html.twig', [
-            'user_manga_lists' => $userMangaListRepository->findAll(),
+            'userMangas' => $userMangaListRepository->findBy(['user' => $user]),
         ]);
     }
 
@@ -27,11 +27,11 @@ class UserMangaListController extends AbstractController
         User $user,
         UserMangaListUtils $userMangaListUtils,
         ): Response {
-            
+            $userId = $user->getId();
             $data = array_map('trim', $request->request->all());
             if (!empty($data)) {
                 $userMangaListUtils->addUserMangaList($data, $user);
-                return $this->redirectToRoute('app_user_manga_list_index', []);
+                return $this->redirectToRoute('app_user_manga_list_index', ['id' => $userId]);
             }
 
         return $this->renderForm('user_manga_list/new.html.twig', [
