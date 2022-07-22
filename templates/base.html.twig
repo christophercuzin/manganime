@@ -36,10 +36,17 @@
                         </a>
                         </li>
                     </ul>
-                    <div class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="button" id="search">Search</button>
-                    </div>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <div class="d-flex" role="search">
+                            <input class="form-control me-2" id="search" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success" id="searchButton" type="button" id="search">Search</button>
+                        </div>
+                    {% else %}
+                        <form class="d-flex" role="search">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit" id="search">Search</button>
+                        </form>
+                    {% endif %}
                      <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="account">
                         <li class="nav-item ms-0 ms-lg-5">
                             <a class="nav-link active link-light" aria-current="page" href="/">Home</a>

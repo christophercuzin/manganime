@@ -38,9 +38,9 @@ class UserMangaListUtils
         return $this->listOfVolume;
     }
 
-    public function retrieveMangaTitle(): array
+    public function retrieveMangaTitle(User $user): array
     {
-        $mangas = $this->userMangaRepo->findAll();
+        $mangas = $this->userMangaRepo->findBy(['user' => $user]);
         foreach ($mangas as $manga) {
             $this->mangaTitle[] = $manga->getTitle();
         }
@@ -51,7 +51,7 @@ class UserMangaListUtils
     {
         $manga = $this->mangaRepo->findOneBy(['title' => $data['manga_title']]);
         $listOfVolume = $this->retrieveListOfVolume($data);
-        $mangasTitle = $this->retrieveMangaTitle();
+        $mangasTitle = $this->retrieveMangaTitle($user);
         $userManga = new UserMangaList;
         if (empty($this->checkErrors)) {
             $em = $this->entityManager;

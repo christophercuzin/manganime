@@ -23,7 +23,13 @@
         {% for userManga in userMangas %}
             <tr>
                 <td>{{ userManga.title }}</td>
-                <td>{{ userManga.numberOfVolume }}</td>
+                {% if userManga.manga is not empty and userManga.manga.numberOfVolumes is not null %}
+                    <td>{{ userManga.numberOfVolume }}/ {{userManga.manga.numberOfVolumes}} </td>
+                {% else %}
+                    <td>{{ userManga.numberOfVolume }}/indisponible</td>        
+                {% endif %}
+                
+                
                 <td>{{ userManga.status }}</td>
                 <td>
                 {% for volume in userManga.listOfVolume %}

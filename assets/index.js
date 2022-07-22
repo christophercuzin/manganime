@@ -26,6 +26,25 @@ if (document.getElementById('card_container')) {
             }
         })
     }
+
+    if (document.getElementById('search')) {
+        const search = document.getElementById('search');
+        const searchButton = document.getElementById('searchButton');
+        searchButton.addEventListener('click', () => {
+            const title = search.value;
+            const options = {
+                method: 'GET',
+                headers: {
+                    'X-RapidAPI-Key': 'fc47d97221msh17b6ad84ac6ce4fp170552jsnc448ea813ea2',
+                    'X-RapidAPI-Host': 'jikan1.p.rapidapi.com'
+                }
+            };
+            fetch('https://api.jikan.moe/v4/manga?letter=' + title)
+            .then(response => response.json())
+            .then(response => [createInput(response), displayMangaDetails(response)])
+        })
+    }
+
     // function use to display all manga was fetch
     function displayMangaDetails (response) {
         let datas = response['data'];
@@ -88,7 +107,9 @@ if (document.getElementById('card_container')) {
                 mangaNumberOfVolumes.value = data['volumes'];
                 mangaDescription.value = data['synopsis'];
                 mangaStatus.value = data['status'];
-                mangaAuthor.value = data['authors'][0]['name'];
+                if (data['authors'].length != 0) {
+                    mangaAuthor.value = data['authors'][0]['name'];
+                }   
                 for (const genre of data['genres']) {
                     mangaGenre.value = mangaGenre.value + genre['name'] + ', ';
                 }
