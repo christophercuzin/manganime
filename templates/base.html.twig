@@ -23,7 +23,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-2 ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item ms-5 me-3">
+                        <li class="nav-item ms-0 ms-lg-5 me-0 me-lg-3">
                             <a class="nav-link active link-light" aria-current="page" href="{{ path('app_user_manga_list_index') }}">Ma liste</a>
                         </li>
                     </ul>
@@ -39,29 +39,26 @@
                         <button class="btn btn-outline-success" type="button" id="search">Search</button>
                     </div>
                      <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="account">
-                        <li class="nav-item ms-5">
+                        <li class="nav-item ms-0 ms-lg-5">
                             <a class="nav-link active link-light" aria-current="page" href="/">Home</a>
                         </li>
-                        <li class="nav-item ms-5">
+                        <li class="nav-item ms-0 ms-lg-5">
                             <a class="nav-link active link-light" aria-current="page" href="{{ path('app_logout') }}">Deconnexion</a>
                         </li>
                         {% if is_granted('ROLE_ADMIN') %}
-                        <li class="nav-item ms-5 me-3">
+                        <li class="nav-item ms-0 ms-lg-5 me-0 me-lg-3">
                             <a class="nav-link active link-light" aria-current="page" href="{{ path('app_admin') }}">Gestion manga</a>
                         </li>
                         {% endif %}
                         {% if is_granted('ROLE_USER') %}
-                        <li class="nav-item ms-5 me-3">
+                        <li class="nav-item ms-0 ms-lg-5 me-0 me-lg-3">
                             <p class="user_email text-light text-center">Bonjour ! <br> {{ app.user.email }}</p>
                         </li>
                         {% else %}
-                        <li class="nav-item ms-5 me-3">
+                        <li class="nav-item ms-0 ms-lg-5 me-0 me-lg-3">
                             <a class="nav-link active link-light" aria-current="page" href="{{ path('app_login') }}">Se connecter</a>
                         </li>
                         {% endif %}
-                        
-                        
-                        
                     </ul>
                 </div>
             </div>

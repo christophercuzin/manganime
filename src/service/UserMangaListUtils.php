@@ -30,9 +30,10 @@ class UserMangaListUtils
     public function retrieveListOfVolume(array $data): array
     {
         $numberOfVolumeListed = $data['number_of_volume_input'];
-        
         for ($i=0; $i < $numberOfVolumeListed; $i++) { 
+            if (!empty($data['volume' . $i])){
             $this->listOfVolume[] = $data['volume' . $i];
+            }
         }
         return $this->listOfVolume;
     }

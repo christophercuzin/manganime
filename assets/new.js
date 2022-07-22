@@ -3,6 +3,7 @@ if (document.getElementById('manga_title')) {
     const listOfVolumeContainer = document.getElementById('list_of_volume_container');
     const numberOfVolumeinput = document.getElementById('number_of_volume_input');
     const addNewMangabutton = document.getElementById('add_new_manga');
+    const buttonAddNewField = document.getElementById('buttonAddNewField');
 
     mangaTitleInput.addEventListener('focusout', () => {
         const title = mangaTitleInput.value;
@@ -17,14 +18,12 @@ if (document.getElementById('manga_title')) {
         fetch('https://api.jikan.moe/v4/manga?letter=' + title)
         .then(response => response.json())
         .then(response =>  createListOfVolumeInput(response))
-        setTimeout(CheckAllInput, 1000)
+        setTimeout(CheckAllInput, 3000)
         
         
     })
 
-    async function CheckAllInput () {
-        fetch('/')
-        .then
+    function CheckAllInput () {
         if (document.getElementById('checkAll')) {
             const checkAll = document.getElementById('checkAll');
             const allInputVolume = document.querySelectorAll('.listOfVolume');
@@ -49,6 +48,8 @@ if (document.getElementById('manga_title')) {
 
                     const listOfVolumeLabel = document.createElement('label');
                     listOfVolumeLabel.setAttribute('for', 'listOfVolume' + i);
+                    listOfVolumeLabel.setAttribute('class', 'listOfVolumeLabel');
+                    listOfVolumeLabel.classList.add('form-label');
                     listOfVolumeLabel.innerHTML = 'tome' + j;
 
                     const listOfVolumeInput = document.createElement('input');
@@ -58,34 +59,41 @@ if (document.getElementById('manga_title')) {
                     listOfVolumeInput.setAttribute('class', 'listOfVolume');
                     listOfVolumeInput.value = j;
 
-                    listOfVolumeContainer.appendChild(listOfVolumeLabel);
                     listOfVolumeContainer.appendChild(listOfVolumeInput);
+                    listOfVolumeContainer.appendChild(listOfVolumeLabel);
 
                     j++
                 }
                 const checkAllLabel = document.createElement('label');
                 checkAllLabel.setAttribute('for', 'checkAll');
+                checkAllLabel.setAttribute('class', 'checkAllLabel');
+                checkAllLabel.classList.add('form-label');
                 checkAllLabel.innerHTML = 'Tout cocher';
 
                 const checkAll = document.createElement('input');
                 checkAll.type = "checkbox";
                 checkAll.setAttribute('id', 'checkAll');
 
-                listOfVolumeContainer.appendChild(checkAllLabel);
                 listOfVolumeContainer.appendChild(checkAll);  
+                listOfVolumeContainer.appendChild(checkAllLabel);
+                
             } else {
                 const addVolumeField = document.createElement('button');
                 addVolumeField.type = "button";
                 addVolumeField.setAttribute('class', 'btn');
                 addVolumeField.classList.add('btn-primary');
+                addVolumeField.classList.add('col-6');
+                addVolumeField.classList.add('mb-5');
                 addVolumeField.innerHTML = "Ajouter un volume"
                 addVolumeField.addEventListener('click', () => {
    
                    const listOfVolumeField = document.createElement('input');
                    listOfVolumeField.type = "number";
                    listOfVolumeField.setAttribute('class', 'listOfVolumeField');
+                   listOfVolumeField.classList.add('form-control');
+                   listOfVolumeField.classList.add('mb-3');
                    listOfVolumeField.setAttribute('min', '0');
-   
+                   
                    listOfVolumeContainer.appendChild(listOfVolumeField);
                    const listOfVolumeFields = document.querySelectorAll('.listOfVolumeField');
                    for (let i = 0; i < listOfVolumeFields.length; i++) {
@@ -94,19 +102,21 @@ if (document.getElementById('manga_title')) {
                        
                    }
                 })
-                listOfVolumeContainer.appendChild(addVolumeField);
+                buttonAddNewField.appendChild(addVolumeField);
            }
         } else {
-             const addVolumeField = document.createElement('button');
-             addVolumeField.type = "button";
-             addVolumeField.setAttribute('class', 'btn');
-             addVolumeField.classList.add('btn-primary');
-             addVolumeField.innerHTML = "Ajouter un volume"
-             addVolumeField.addEventListener('click', () => {
+            const addVolumeField = document.createElement('button');
+            addVolumeField.type = "button";
+            addVolumeField.setAttribute('class', 'btn');
+            addVolumeField.classList.add('btn-primary');
+            addVolumeField.classList.add('col-6');
+            addVolumeField.innerHTML = "Ajouter un volume"
+            addVolumeField.addEventListener('click', () => {
 
                 const listOfVolumeField = document.createElement('input');
                 listOfVolumeField.type = "number";
                 listOfVolumeField.setAttribute('class', 'listOfVolumeField');
+                listOfVolumeField.classList.add('form-control');
                 listOfVolumeField.setAttribute('min', '0');
 
                 listOfVolumeContainer.appendChild(listOfVolumeField);
@@ -116,7 +126,7 @@ if (document.getElementById('manga_title')) {
                     element.setAttribute('name', 'volume' + i);
                 }
              })
-             listOfVolumeContainer.appendChild(addVolumeField);
+             buttonAddNewField.appendChild(addVolumeField);
         }
     }
 

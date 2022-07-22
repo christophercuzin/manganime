@@ -6,28 +6,33 @@
 
 
 <main id="main_list" class="container-fluid">
-    <div class="container-fluid">
-    <h1>Ajouté un nouveau manga</h1>
-        <form method="POST" class="form_manga">
+    <div class="row justify-content-center align-items-center vh-100 bg-light">
+        <form method="POST" class="form_manga col-lg-6 border rounded-4">
+            <h1 class="text-center">Ajouter un nouveau manga</h1>
             <input type="hidden" id="number_of_volume_input" name="number_of_volume_input">
-            <label for="manga_title">Title</label>
-            <input type="text" name="manga_title" id="manga_title" placeholder="berserk" required>
+            <label for="manga_title" class="form-label">Title</label>
+            <input type="text" class="form-control mb-3" name="manga_title" id="manga_title" placeholder="berserk" required>
 
-             <label for="number_of_volume">Nombre de volume posséder</label>
-            <input type="number" name="number_of_volume" id="number_of_volume" placeholder="24" min="0" required>
+            <label for="number_of_volume" class="form-label">Nombre de volume posséder</label>
+            <input type="number" name="number_of_volume" class="form-control mb-3" id="number_of_volume" placeholder="24" min="0" required>
 
-            <label for="status">Statut</label>
-            <select name="status" id="status" required>
+            <label for="status" class="form-label">Statut</label>
+            <select name="status" id="status" class="form-control mb-3" required>
             <option value="">choisir une option</option>
             <option value="en cours">Lecture en cours</option>
             <option value="terminé">Terminé</option>
             <option value="a lire">Je prevois de le lire</option>
             </select>
-
-            <div id="list_of_volume_container">
-             <p>Selctionner les volumes posséder</p>
+            <div class="row justify-content-center">
+                <div id="list_of_volume_container" class="text-center">
+                    <p>Indiquez les volumes posséder</p>
+                </div>
+                <div id="buttonAddNewField" class="text-center">
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary" id="add_new_manga">Validé</button>
+            <div class="col-12 text-center">
+                <button type="submit" class="btn btn-primary col-lg-6 col-sm-6 mb-5" id="add_new_manga">Valider</button>
+            </div>
         </form>
     </div>
 

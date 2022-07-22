@@ -51,6 +51,17 @@ body {
             }
         }
     }
+    .form_manga {
+        max-height: 80vh;
+        overflow: scroll;
+        .listOfVolumeLabel {
+            margin: 10px;
+        }
+        .checkAllLabel {
+            margin: 10px;
+        }
+    }
+
     
 }
 @media screen and (min-width: 986px)
