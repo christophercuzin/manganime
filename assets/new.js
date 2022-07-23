@@ -40,6 +40,28 @@ if (document.getElementById('manga_title')) {
 
     function createListOfVolumeInput(response) {
         let data = response['data'];
+        const allInputVolume = document.querySelectorAll('.listOfVolume');
+        const allInputVolumeLabel = document.querySelectorAll('.listOfVolumeLabel');
+        const checkAll = document.getElementById('checkAll');
+        const checkAllLabel = document.getElementById('checkAllLabel');
+        const listOfVolumeField = document.querySelectorAll('.listOfVolumeField');
+        const btn = document.getElementById('btn');
+        if (btn) {
+            btn.remove();
+        }
+        for (const VolumeField of listOfVolumeField) {
+            VolumeField.remove();
+        }
+        if (checkAll) {
+        checkAll.remove();
+        checkAllLabel.remove();
+        }
+        for (const InputVolume of allInputVolume) {
+            InputVolume.remove();
+        }
+        for (const InputVolumeLabel of allInputVolumeLabel) {
+            InputVolumeLabel.remove();
+        }
         if (data != "") {
             mangaTitleInput.value = data[0]['title'];
             if (data[0]['volumes']) {
@@ -67,6 +89,7 @@ if (document.getElementById('manga_title')) {
                 const checkAllLabel = document.createElement('label');
                 checkAllLabel.setAttribute('for', 'checkAll');
                 checkAllLabel.setAttribute('class', 'checkAllLabel');
+                checkAllLabel.setAttribute('id', 'checkAllLabel');
                 checkAllLabel.classList.add('form-label');
                 checkAllLabel.innerHTML = 'Tout cocher';
 
@@ -81,6 +104,7 @@ if (document.getElementById('manga_title')) {
                 const addVolumeField = document.createElement('button');
                 addVolumeField.type = "button";
                 addVolumeField.setAttribute('class', 'btn');
+                addVolumeField.setAttribute('id', 'btn');
                 addVolumeField.classList.add('btn-primary');
                 addVolumeField.classList.add('col-6');
                 addVolumeField.classList.add('mb-5');
@@ -108,8 +132,10 @@ if (document.getElementById('manga_title')) {
             const addVolumeField = document.createElement('button');
             addVolumeField.type = "button";
             addVolumeField.setAttribute('class', 'btn');
+            addVolumeField.setAttribute('id', 'btn');
             addVolumeField.classList.add('btn-primary');
             addVolumeField.classList.add('col-6');
+            addVolumeField.classList.add('mb-5');
             addVolumeField.innerHTML = "Ajouter un volume"
             addVolumeField.addEventListener('click', () => {
 
@@ -117,6 +143,7 @@ if (document.getElementById('manga_title')) {
                 listOfVolumeField.type = "number";
                 listOfVolumeField.setAttribute('class', 'listOfVolumeField');
                 listOfVolumeField.classList.add('form-control');
+                listOfVolumeField.classList.add('mb-3');
                 listOfVolumeField.setAttribute('min', '0');
 
                 listOfVolumeContainer.appendChild(listOfVolumeField);

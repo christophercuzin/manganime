@@ -2,7 +2,6 @@ $dark: #000000;
 $link-light: #F2F2F2;
 @import "~bootstrap/scss/bootstrap";
 body {
-    background-color: white;
     header {
         .user_email {
             height: 100%;
@@ -61,6 +60,28 @@ body {
             margin: 10px;
         }
     }
+    tr {
+        border: 1px solid black;
+        th {
+            text-align: center;
+        }
+        td {
+            border-right: 1px solid black;
+            text-align: center;
+            max-width: 400px;
+            vertical-align: middle;
+        }
+        .display_volumes_container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        .display_volumes {
+            width: 25px;
+            height: 25px;
+            margin-right: 5px;
+        }
+    }
+}
 
     
 }

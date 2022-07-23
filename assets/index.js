@@ -39,7 +39,7 @@ if (document.getElementById('card_container')) {
                     'X-RapidAPI-Host': 'jikan1.p.rapidapi.com'
                 }
             };
-            fetch('https://api.jikan.moe/v4/manga?letter=' + title)
+            fetch('https://api.jikan.moe/v4/manga?type=manga&letter=' + title)
             .then(response => response.json())
             .then(response => [createInput(response), displayMangaDetails(response)])
         })

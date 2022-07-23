@@ -144,4 +144,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+    
+    public function getMissingVolumes(): array {
+        $missingVolumes = [];
+        $userMangaLists = $this->getUserMangaLists();
+        foreach ($userMangaLists as $userMangaList) {
+            $listOfVolume = $userMangaList->getListOfVolume();
+            $manga = $userMangaList->getManga();
+            $numberOfVolume = $manga->getNumberOfVolumes();
+            $key = $userMangaList->getTitle();
+            for ($i=1; $i <= $numberOfVolume; $i++) { 
+                if (!in_array($i, $listOfVolume)) {
+                    $missingVolumes[$key][] = $i;
+                }
+            }
+        }
+        return $missingVolumes;
+    }
+
 }

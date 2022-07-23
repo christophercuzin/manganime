@@ -5,52 +5,72 @@
 {% block body %}
 
 
-<main id="main_list" class="container-fluid">
-    <div class="row">
-        <div class="">
-            <h1>Ma liste</h1>
+<main id="main_list" class="vh-100 vw-100 bg-light">
+    <div class="container-lg container-fluid-sm">
+        <div class="row">
+            <h1 class="text-center mt-5 mb-5">Ma liste</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Titre</th>
-                <th>Nombre de volume posséder</th>
-                <th>Statut</th>
-                <th>liste des volume</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for userManga in userMangas %}
-            <tr>
-                <td>{{ userManga.title }}</td>
-                {% if userManga.manga is not empty and userManga.manga.numberOfVolumes is not null %}
-                    <td>{{ userManga.numberOfVolume }}/ {{userManga.manga.numberOfVolumes}} </td>
+            <table class="table">
+                <thead>
+                    <tr class="table-primary">
+                        <th>Titre</th>
+                        <th>Nombre de volume posséder</th>
+                        <th>Statut</th>
+                        <th>liste des volumes posséder</th>
+                        <th>Volumes manquant</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for userManga in user.userMangaLists %}
+                    <tr>
+                        <td>{{ userManga.title }}</td>
+                        {% if userManga.manga is not empty and userManga.manga.numberOfVolumes is not null %}
+                            <td>{{ userManga.numberOfVolume }}/ {{userManga.manga.numberOfVolumes}} </td>
+                        {% else %}
+                            <td>{{ userManga.numberOfVolume }}/indisponible</td>        
+                        {% endif %}
+                        
+                        
+                        <td>{{ userManga.status }}</td>
+                        <td>
+                        <div class="display_volumes_container">
+                            {% for volume in userManga.listOfVolume %}
+                                <div class="display_volumes">
+                                    {{ volume }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                        </td>
+
+                        <td>
+                        <div class="display_volumes_container">
+                            {% for key, missingVolumes in user.missingVolumes %}
+                                {% if userManga.title is same as key %}
+                                    {% for missingVolume in missingVolumes %}
+                                        <div class="display_volumes">
+                                            {{missingVolume}}
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        </td>
+                        <td>
+                            <div>
+                                
+                            </div>
+                        </td>
+                    </tr>
                 {% else %}
-                    <td>{{ userManga.numberOfVolume }}/indisponible</td>        
-                {% endif %}
-                
-                
-                <td>{{ userManga.status }}</td>
-                <td>
-                {% for volume in userManga.listOfVolume %}
-                    {{ volume }}
+                    <tr>
+                        <td colspan="5">no records found</td>
+                    </tr>
                 {% endfor %}
-                </td>
-                
-                <td>
-                    {# <a href="{{ path('app_author_show', {'id': author.id}) }}">show</a>
-                    <a href="{{ path('app_author_edit', {'id': author.id}) }}">edit</a> #}
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                </tbody>
+            </table>
+            <a href="{{ path('app_user_manga_list_new', {id: app.user.id}) }}">ajouter</a>
         </div>
-        <a href="{{ path('app_user_manga_list_new', {id: app.user.id}) }}">ajouté</a>
     </div>
 
 </main>

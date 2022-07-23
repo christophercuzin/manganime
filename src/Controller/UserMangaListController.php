@@ -17,7 +17,7 @@ class UserMangaListController extends AbstractController
     public function index(UserMangaListRepository $userMangaListRepository, User $user): Response
     {
         return $this->render('user_manga_list/index.html.twig', [
-            'userMangas' => $userMangaListRepository->findBy(['user' => $user]),
+            'user' => $user,
         ]);
     }
 

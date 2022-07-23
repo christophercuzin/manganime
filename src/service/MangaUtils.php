@@ -4,6 +4,7 @@ namespace App\service;
 
 use App\Entity\Manga;
 use App\Repository\MangaRepository;
+use App\Repository\UserMangaListRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
 class MangaUtils
@@ -13,13 +14,16 @@ class MangaUtils
     private array $checkErrors = [];
     private MangaRepository $mangaRepo;
     private array $mangaTitle = [];
+    private UserMangaListRepository $userMangaRepo;
 
     public function __construct(
         EntityManagerInterface $entityManager,
         MangaRepository $mangaRepo,
+        UserMangaListRepository $userMangaRepo,
     ) {
         $this->entityManager = $entityManager;
         $this->mangaRepo = $mangaRepo;
+        $this->userMangaRepo = $userMangaRepo;
     }
 
     public function retrieveManga(array $data): array
@@ -68,11 +72,23 @@ class MangaUtils
                     $manga->setAuthor($mangaDetail[4]);
                     $manga->setGenre($mangaDetail[5]);
                     $em->persist($manga);
+                    $this->updateMangaId($manga, $mangaDetail);
+                
                 }
+                $em->flush();
             }
-            $em->flush();
+            
         }
+    }
 
-
+    public function updateMangaId(Manga $manga, array $mangaDetail) {
+        $em = $this->entityManager;
+        $userMangalists = $this->userMangaRepo->findAll();
+        foreach ($userMangalists as $userManga) {
+            if ($mangaDetail[0] === $userManga->getTitle()) {
+                $userManga->setManga($manga);
+            }
+            $em->persist($userManga);
+        }
     }
 }
