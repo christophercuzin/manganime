@@ -20,6 +20,7 @@ class MangaUtils
         EntityManagerInterface $entityManager,
         MangaRepository $mangaRepo,
         UserMangaListRepository $userMangaRepo,
+
     ) {
         $this->entityManager = $entityManager;
         $this->mangaRepo = $mangaRepo;
@@ -37,6 +38,7 @@ class MangaUtils
             $mangaDetails [] = $data['mangaStatus' . $i];
             $mangaDetails [] = $data['mangaAuthor' . $i];
             $mangaDetails [] = $data['mangaGenre' . $i];
+            $mangaDetails [] = $data['mangaImage' . $i];
             $this->allMangaDetails[] = $mangaDetails;
         }
         return $this->allMangaDetails;
@@ -51,7 +53,7 @@ class MangaUtils
         return $this->mangaTitle;
     }
 
-    public function addManga($data): void
+    public function addManga(array $data): void
     {
         $allManga = $this->retrieveManga($data);
         $mangasTitle = $this->retrieveMangaTitle();
@@ -71,6 +73,7 @@ class MangaUtils
                     $manga->setStatus($mangaDetail[3]);
                     $manga->setAuthor($mangaDetail[4]);
                     $manga->setGenre($mangaDetail[5]);
+                    $this->addMangaImage($manga, $mangaDetail);
                     $em->persist($manga);
                     $this->updateMangaId($manga, $mangaDetail);
                 
@@ -81,7 +84,7 @@ class MangaUtils
         }
     }
 
-    public function updateMangaId(Manga $manga, array $mangaDetail) {
+    public function updateMangaId(Manga $manga, array $mangaDetail): void {
         $em = $this->entityManager;
         $userMangalists = $this->userMangaRepo->findAll();
         foreach ($userMangalists as $userManga) {
@@ -90,5 +93,13 @@ class MangaUtils
             }
             $em->persist($userManga);
         }
+    }
+
+    public function addMangaImage(Manga $manga, array $mangaDetail): void
+    {
+        $url = $mangaDetail[6];
+        $img = '../assets/images/' . uniqid('manga', true) . '.webp';
+        file_put_contents($img, file_get_contents($url));
+        $manga->setPicture(preg_replace('/(^\.)\.\/assets/', 'build', $img));
     }
 }

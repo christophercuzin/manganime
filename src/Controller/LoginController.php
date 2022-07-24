@@ -31,8 +31,6 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
         // controller can be blank: it will never be called!
         throw new \Exception('Don\'t forget to activate logout in security.yaml');
 
-        return $this->redirectToRoute('app_home', [
-            'controller_name' => 'HomeController',
-        ]);
+        return $this->redirectToRoute('app_home', []);
     }
   }

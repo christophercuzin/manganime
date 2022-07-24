@@ -15,10 +15,12 @@ if (document.getElementById('manga_title')) {
             }
         };
         // fetch the first page of manga
+        if (title != "") {
         fetch('https://api.jikan.moe/v4/manga?letter=' + title)
         .then(response => response.json())
         .then(response =>  createListOfVolumeInput(response))
         setTimeout(CheckAllInput, 3000)
+        }
         
         
     })

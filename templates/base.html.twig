@@ -39,12 +39,12 @@
                     {% if is_granted('ROLE_ADMIN') %}
                         <div class="d-flex" role="search">
                             <input class="form-control me-2" id="search" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-success" id="searchButton" type="button" id="search">Search</button>
+                            <button class="btn btn-outline-success" id="searchButton" type="button">Search</button>
                         </div>
                     {% else %}
                         <form class="d-flex" role="search">
                             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-success" type="submit" id="search">Search</button>
+                            <button class="btn btn-outline-success" type="submit">Search</button>
                         </form>
                     {% endif %}
                      <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="account">

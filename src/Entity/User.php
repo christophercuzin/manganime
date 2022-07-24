@@ -150,12 +150,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $userMangaLists = $this->getUserMangaLists();
         foreach ($userMangaLists as $userMangaList) {
             $listOfVolume = $userMangaList->getListOfVolume();
-            $manga = $userMangaList->getManga();
-            $numberOfVolume = $manga->getNumberOfVolumes();
-            $key = $userMangaList->getTitle();
-            for ($i=1; $i <= $numberOfVolume; $i++) { 
-                if (!in_array($i, $listOfVolume)) {
-                    $missingVolumes[$key][] = $i;
+            if ($userMangaList->getManga() != null) {
+                $manga = $userMangaList->getManga(); 
+                $numberOfVolume = $manga->getNumberOfVolumes();
+                $key = $userMangaList->getTitle();
+                for ($i=1; $i <= $numberOfVolume; $i++) { 
+                    if (!in_array($i, $listOfVolume)) {
+                        $missingVolumes[$key][] = $i;
+                    }
                 }
             }
         }

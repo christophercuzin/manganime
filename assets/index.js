@@ -69,7 +69,7 @@ if (document.getElementById('card_container')) {
             const img = document.createElement('img');
             img.setAttribute('class', 'card-img-top');
             img.setAttribute('alt', 'image du manga' + data['title']);
-            img.setAttribute('src', data['images']['jpg']['image_url'])
+            img.setAttribute('src', data['images']['webp']['image_url'])
 
             const title = document.createElement('h6');
             title.setAttribute('class', 'card-title');
@@ -95,6 +95,7 @@ if (document.getElementById('card_container')) {
                 const mangaStatus = document.createElement('input');
                 const mangaAuthor = document.createElement('input');
                 const mangaGenre = document.createElement('input');
+                const mangaImage = document.createElement('input');
                 // set type of input
                 mangaTitle.type = 'hidden';
                 mangaNumberOfVolumes.type = 'hidden';
@@ -102,6 +103,7 @@ if (document.getElementById('card_container')) {
                 mangaStatus.type = 'hidden';
                 mangaAuthor.type = 'hidden';
                 mangaGenre.type = 'hidden';
+                mangaImage.type = 'hidden';
                 // insert data into input value
                 mangaTitle.value = data['title'];
                 mangaNumberOfVolumes.value = data['volumes'];
@@ -113,6 +115,7 @@ if (document.getElementById('card_container')) {
                 for (const genre of data['genres']) {
                     mangaGenre.value = mangaGenre.value + genre['name'] + ', ';
                 }
+                mangaImage.value = data['images']['webp']['image_url'];
                 //set name of the input
                 mangaTitle.setAttribute('name', 'mangaTitle' + i);
                 mangaNumberOfVolumes.setAttribute('name', 'mangaNumberOfVolumes' + i);
@@ -120,6 +123,7 @@ if (document.getElementById('card_container')) {
                 mangaStatus.setAttribute('name', 'mangaStatus' + i);
                 mangaAuthor.setAttribute('name', 'mangaAuthor' + i);
                 mangaGenre.setAttribute('name', 'mangaGenre' + i);
+                mangaImage.setAttribute('name', 'mangaImage' + i);
                 // insert input into the page
                 cardContainer.appendChild(mangaTitle);
                 cardContainer.appendChild(mangaNumberOfVolumes);
@@ -127,6 +131,7 @@ if (document.getElementById('card_container')) {
                 cardContainer.appendChild(mangaStatus);
                 cardContainer.appendChild(mangaAuthor);
                 cardContainer.appendChild(mangaGenre);
+                cardContainer.appendChild(mangaImage);
             }
             // count number of manga was fetch
             numberOfManga.value = datas.length;
