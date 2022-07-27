@@ -1,9 +1,29 @@
+function CheckInputVolumeList (numberOfVolume) {
+    const allInputVolume = document.querySelectorAll('.listOfVolume');
+    const numberOfVolumeValue = numberOfVolume.value;
+    if (allInputVolume.length != 0) {
+        for (const inputVolume of allInputVolume) {
+            if (inputVolume.checked == true) {
+                inputVolume.checked = false;
+            }
+        }
+        for (let i = 0; i < numberOfVolumeValue; i++) {
+            const inputVolume = allInputVolume[i];
+            inputVolume.checked = true;
+        }
+    
+    }
+}
+
+
+
 if (document.getElementById('manga_title')) {
     const mangaTitleInput = document.getElementById('manga_title');
     const listOfVolumeContainer = document.getElementById('list_of_volume_container');
     const numberOfVolumeinput = document.getElementById('number_of_volume_input');
     const addNewMangabutton = document.getElementById('add_new_manga');
     const buttonAddNewField = document.getElementById('buttonAddNewField');
+    const numberOfVolume = document.getElementById('number_of_volume');
 
     mangaTitleInput.addEventListener('focusout', () => {
         const title = mangaTitleInput.value;
@@ -19,33 +39,19 @@ if (document.getElementById('manga_title')) {
         fetch('https://api.jikan.moe/v4/manga?letter=' + title)
         .then(response => response.json())
         .then(response =>  createListOfVolumeInput(response))
-        setTimeout(CheckAllInput, 3000)
+        
         }
         
         
     })
-
-    function CheckAllInput () {
-        if (document.getElementById('checkAll')) {
-            const checkAll = document.getElementById('checkAll');
-            const allInputVolume = document.querySelectorAll('.listOfVolume');
-            checkAll.onchange = () => {
-                for (const InputVolume of allInputVolume) {
-                    InputVolume.checked = true;
-                    if (InputVolume.checked == true && checkAll.checked == false) {
-                        InputVolume.checked = false;
-                    }
-                }
-            }
-        }
-    }
+    numberOfVolume.addEventListener('focusout', () => {
+    CheckInputVolumeList(numberOfVolume);
+    })
 
     function createListOfVolumeInput(response) {
         let data = response['data'];
         const allInputVolume = document.querySelectorAll('.listOfVolume');
         const allInputVolumeLabel = document.querySelectorAll('.listOfVolumeLabel');
-        const checkAll = document.getElementById('checkAll');
-        const checkAllLabel = document.getElementById('checkAllLabel');
         const listOfVolumeField = document.querySelectorAll('.listOfVolumeField');
         const btn = document.getElementById('btn');
         if (btn) {
@@ -53,10 +59,6 @@ if (document.getElementById('manga_title')) {
         }
         for (const VolumeField of listOfVolumeField) {
             VolumeField.remove();
-        }
-        if (checkAll) {
-        checkAll.remove();
-        checkAllLabel.remove();
         }
         for (const InputVolume of allInputVolume) {
             InputVolume.remove();
@@ -88,20 +90,6 @@ if (document.getElementById('manga_title')) {
 
                     j++
                 }
-                const checkAllLabel = document.createElement('label');
-                checkAllLabel.setAttribute('for', 'checkAll');
-                checkAllLabel.setAttribute('class', 'checkAllLabel');
-                checkAllLabel.setAttribute('id', 'checkAllLabel');
-                checkAllLabel.classList.add('form-label');
-                checkAllLabel.innerHTML = 'Tout cocher';
-
-                const checkAll = document.createElement('input');
-                checkAll.type = "checkbox";
-                checkAll.setAttribute('id', 'checkAll');
-
-                listOfVolumeContainer.appendChild(checkAll);  
-                listOfVolumeContainer.appendChild(checkAllLabel);
-                
             } else {
                 const addVolumeField = document.createElement('button');
                 addVolumeField.type = "button";

@@ -13,11 +13,12 @@
         {% endfor %}
         </div>
     </div>
-    <div class="container">
-    {% for manga in mangas %}
-        <img class="mangaPicture" src="{{ asset(manga.picture) }}">
-    {% endfor %}
-        
+    <div class="container-lg container-fluid-sm">
+        <div class="row justify-content-center">
+            {% for manga in mangas %}
+                <img class="mangaPicture" src="{{ asset(manga.picture) }}">
+            {% endfor %}
+        </div> 
     </div>
 
 </main>
