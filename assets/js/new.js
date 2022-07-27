@@ -15,8 +15,6 @@ function CheckInputVolumeList (numberOfVolume) {
     }
 }
 
-
-
 if (document.getElementById('manga_title')) {
     const mangaTitleInput = document.getElementById('manga_title');
     const listOfVolumeContainer = document.getElementById('list_of_volume_container');

@@ -8,8 +8,9 @@
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.scss';
 require('bootstrap');
-import './index.js';
-import './new.js';
+import './js/index.js';
+import './js/new.js';
+import './js/style.js';
 
 // start the Stimulus application
 import './bootstrap';

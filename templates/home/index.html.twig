@@ -6,20 +6,62 @@
 
 
 <main class="container-fluid">
-    <div class="row paging_container">
-        <div class="number_of_page_container col-lg-6 col-sm-10">
-        {% for i in 1..100 %}
-                <button id="page_number_{{ i }}" class="page_number" type="button" value="{{ i }}">{{ i }}</button>
-        {% endfor %}
+    <h1 class="text-center">Les mieux noté</h1>
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="false">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+            
+                <div class="home_page_card_container">
+                
+                    <div class="row justify-content-center">
+                        {% for manga in mangas|slice(0,5) %}
+                            <div class="home_page_card">
+                                <div class="home_page_card_title">
+                                    <h6>{{ manga.title}}</h6>
+                                </div>
+                                <img class="home_page_card_img_top" src="{{ asset(manga.picture) }}">
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="home_page_card_container row">
+                    <div class="row justify-content-center">
+                        {% for manga in mangas|slice(5,5) %}
+                            <div class="home_page_card">
+                                <div class="home_page_card_title">
+                                    <h6>{{ manga.title}}</h6>
+                                </div>
+                                <img class="home_page_card_img_top" src="{{ asset(manga.picture) }}">
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="home_page_card_container row">
+                    <div class="row justify-content-center">
+                        {% for manga in mangas|slice(10,5) %}
+                            <div class="home_page_card">
+                                <div class="home_page_card_title">
+                                    <h6>{{ manga.title}}</h6>
+                                </div>
+                                <img class="home_page_card_img_top" src="{{ asset(manga.picture) }}">
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
         </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
-    <div class="container-lg container-fluid-sm">
-        <div class="row justify-content-center">
-            {% for manga in mangas %}
-                <img class="mangaPicture" src="{{ asset(manga.picture) }}">
-            {% endfor %}
-        </div> 
-    </div>
-
 </main>
 {% endblock %}
