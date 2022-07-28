@@ -8,7 +8,7 @@
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.scss';
 require('bootstrap');
-import './js/index.js';
+import './js/admin.js';
 import './js/new.js';
 import './js/style.js';
 

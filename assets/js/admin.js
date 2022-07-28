@@ -111,10 +111,12 @@ if (document.getElementById('card_container')) {
                 mangaStatus.value = data['status'];
                 if (data['authors'].length != 0) {
                     mangaAuthor.value = data['authors'][0]['name'];
-                }   
+                }  
+                const arrayMangaGenre = []; 
                 for (const genre of data['genres']) {
-                    mangaGenre.value = mangaGenre.value + genre['name'] + ', ';
+                    arrayMangaGenre.push(genre['name']);
                 }
+                mangaGenre.value = arrayMangaGenre;
                 mangaImage.value = data['images']['webp']['image_url'];
                 //set name of the input
                 mangaTitle.setAttribute('name', 'mangaTitle' + i);

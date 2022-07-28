@@ -31,8 +31,8 @@ class Manga
     #[ORM\Column(length: 255)]
     private string $status;
 
-    #[ORM\Column(length: 255)]
-    private string $genre;
+    #[ORM\Column(type: Types::ARRAY)]
+    private array $genre = [];
 
     #[ORM\Column(length: 255, nullable: true)]
     private string $picture;
@@ -110,12 +110,12 @@ class Manga
         return $this;
     }
 
-    public function getGenre(): string
+    public function getGenre(): array
     {
         return $this->genre;
     }
 
-    public function setGenre(string $genre): self
+    public function setGenre(array $genre): self
     {
         $this->genre = $genre;
 

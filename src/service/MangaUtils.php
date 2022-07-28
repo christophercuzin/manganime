@@ -37,7 +37,7 @@ class MangaUtils
             $mangaDetails [] = $data['mangaDescription' . $i];
             $mangaDetails [] = $data['mangaStatus' . $i];
             $mangaDetails [] = $data['mangaAuthor' . $i];
-            $mangaDetails [] = $data['mangaGenre' . $i];
+            $mangaDetails [] = explode(',', $data['mangaGenre' . $i]);
             $mangaDetails [] = $data['mangaImage' . $i];
             $this->allMangaDetails[] = $mangaDetails;
         }
