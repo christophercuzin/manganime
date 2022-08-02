@@ -82,6 +82,10 @@ if (document.getElementById('card_container')) {
     }
     // function use to create input
     function createInput(response) {
+        const allInput = document.querySelectorAll('.adminInput');
+        for (const input of allInput) {
+            input.remove();
+        }
         let datas = response['data'];
         if (document.getElementById('numberOfManga')) {
             const numberOfManga = document.getElementById('numberOfManga');
@@ -122,7 +126,9 @@ if (document.getElementById('card_container')) {
                 }
                 mangaGenre.value = arrayMangaGenre;
                 mangaImage.value = data['images']['webp']['image_url'];
+                if (data['demographics'].length != 0) {
                 mangaType.value = data['demographics'][0]['name'];
+                }
                 mangaRate.value = data['score'];
                 //set name of the input
                 mangaTitle.setAttribute('name', 'mangaTitle' + i);
@@ -134,6 +140,16 @@ if (document.getElementById('card_container')) {
                 mangaImage.setAttribute('name', 'mangaImage' + i);
                 mangaType.setAttribute('name', 'mangaType' + i);
                 mangaRate.setAttribute('name', 'mangaRate' + i);
+                // set class
+                mangaTitle.setAttribute('class', 'adminInput');
+                mangaNumberOfVolumes.setAttribute('class', 'adminInput');
+                mangaDescription.setAttribute('class', 'adminInput');
+                mangaStatus.setAttribute('class', 'adminInput');
+                mangaAuthor.setAttribute('class', 'adminInput');
+                mangaGenre.setAttribute('class', 'adminInput');
+                mangaImage.setAttribute('class', 'adminInput');
+                mangaType.setAttribute('class', 'adminInput');
+                mangaRate.setAttribute('class', 'adminInput');
                 // insert input into the page
                 cardContainer.appendChild(mangaTitle);
                 cardContainer.appendChild(mangaNumberOfVolumes);

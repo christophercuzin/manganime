@@ -39,16 +39,26 @@ class MangaRepository extends ServiceEntityRepository
         }
     }
 
-    public function findActionManga(): array
+    public function findMangaByRating(): array
     {
         return $this->createQueryBuilder('m')
-        ->select('m, g')
-        ->leftjoin ('m.genres', 'g')
-        ->andWhere('g.genre = :Action')
-        ->setParameter('Action', 'Action')
+        ->select('m')
+        ->andWhere('m.rate >= 8')
+        ->orderBy('m.rate', 'DESC')
         ->getQuery()
         ->getResult()
-    ;
+        ;
+    }
+
+    public function findShounenMangas(): array
+    {
+        return $this->createQueryBuilder('m')
+        ->select('m')
+        ->andWhere('m.type = :s')
+        ->setParameter('s', 'Shounen')
+        ->getQuery()
+        ->getResult()
+        ;
     }
 
 //    /**

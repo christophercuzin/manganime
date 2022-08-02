@@ -76,8 +76,17 @@ class MangaUtils
                     $manga->setDescription($mangaDetail[2]);
                     $manga->setStatus($mangaDetail[3]);
                     $manga->setAuthor($mangaDetail[4]);
-                    $manga->setType($mangaDetail[7]);
-                    $manga->setRate($mangaDetail[8]);
+                    if ($mangaDetail[7] === "") {
+                        $manga->setType(null);
+                    } else {
+                        $manga->setType($mangaDetail[7]);
+                    }
+                    
+                    if ($mangaDetail[8] === "") {
+                        $manga->setRate(null);
+                    } else {
+                        $manga->setRate($mangaDetail[8]);
+                    }
                     $this->addMangaImage($manga, $mangaDetail);
                     $em->persist($manga);
                     $this->updateMangaId($manga, $mangaDetail);
