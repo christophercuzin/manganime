@@ -39,6 +39,18 @@ class MangaRepository extends ServiceEntityRepository
         }
     }
 
+    public function findActionManga(): array
+    {
+        return $this->createQueryBuilder('m')
+        ->select('m, g')
+        ->leftjoin ('m.genres', 'g')
+        ->andWhere('g.genre = :Action')
+        ->setParameter('Action', 'Action')
+        ->getQuery()
+        ->getResult()
+    ;
+    }
+
 //    /**
 //     * @return Manga[] Returns an array of Manga objects
 //     */

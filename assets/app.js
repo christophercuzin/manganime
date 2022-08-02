@@ -11,6 +11,7 @@ require('bootstrap');
 import './js/admin.js';
 import './js/new.js';
 import './js/style.js';
+import './js/carousel.js';
 
 // start the Stimulus application
 import './bootstrap';

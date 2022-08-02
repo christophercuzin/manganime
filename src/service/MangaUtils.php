@@ -2,6 +2,7 @@
 
 namespace App\service;
 
+use App\Entity\Genre;
 use App\Entity\Manga;
 use App\Repository\MangaRepository;
 use App\Repository\UserMangaListRepository;
@@ -39,6 +40,8 @@ class MangaUtils
             $mangaDetails [] = $data['mangaAuthor' . $i];
             $mangaDetails [] = explode(',', $data['mangaGenre' . $i]);
             $mangaDetails [] = $data['mangaImage' . $i];
+            $mangaDetails [] = $data['mangaType' . $i];
+            $mangaDetails [] = $data['mangaRate' . $i];
             $this->allMangaDetails[] = $mangaDetails;
         }
         return $this->allMangaDetails;
@@ -63,6 +66,7 @@ class MangaUtils
             foreach ($allManga as $mangaDetail) {
                 if (!in_array($mangaDetail[0], $mangasTitle)) {
                     $manga = new Manga;
+                    
                     $manga->setTitle($mangaDetail[0]);
                     if ($mangaDetail[1] === "") {
                         $manga->setNumberOfVolumes(null);
@@ -72,10 +76,12 @@ class MangaUtils
                     $manga->setDescription($mangaDetail[2]);
                     $manga->setStatus($mangaDetail[3]);
                     $manga->setAuthor($mangaDetail[4]);
-                    $manga->setGenre($mangaDetail[5]);
+                    $manga->setType($mangaDetail[7]);
+                    $manga->setRate($mangaDetail[8]);
                     $this->addMangaImage($manga, $mangaDetail);
                     $em->persist($manga);
                     $this->updateMangaId($manga, $mangaDetail);
+                    $this->addGenre($manga, $mangaDetail);
                 
                 }
                 $em->flush();
@@ -92,6 +98,18 @@ class MangaUtils
                 $userManga->setManga($manga);
             }
             $em->persist($userManga);
+        }
+    }
+
+    public function addGenre(Manga $manga, array $mangaDetail): void
+    {
+        $em = $this->entityManager;
+        foreach ($mangaDetail[5] as $mangaGenre) {
+            $genre = new Genre;
+            $genre->setGenre($mangaGenre);
+            $genre->setManga($manga);
+            $em->persist($genre);
+
         }
     }
 

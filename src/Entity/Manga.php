@@ -31,18 +31,25 @@ class Manga
     #[ORM\Column(length: 255)]
     private string $status;
 
-    #[ORM\Column(type: Types::ARRAY)]
-    private array $genre = [];
-
     #[ORM\Column(length: 255, nullable: true)]
     private string $picture;
 
     #[ORM\OneToMany(mappedBy: 'manga', targetEntity: UserMangaList::class)]
     private Collection $userMangaLists;
 
+    #[ORM\OneToMany(mappedBy: 'manga', targetEntity: Genre::class)]
+    private Collection $genres;
+
+    #[ORM\Column(nullable: true)]
+    private ?float $rate = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $type = null;
+
     public function __construct()
     {
         $this->userMangaLists = new ArrayCollection();
+        $this->genres = new ArrayCollection();
     }
 
     public function getId(): int
@@ -110,18 +117,6 @@ class Manga
         return $this;
     }
 
-    public function getGenre(): array
-    {
-        return $this->genre;
-    }
-
-    public function setGenre(array $genre): self
-    {
-        $this->genre = $genre;
-
-        return $this;
-    }
-
     public function getPicture(): ?string
     {
         return $this->picture;
@@ -160,6 +155,60 @@ class Manga
                 $userMangaList->setManga(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Genre>
+     */
+    public function getGenres(): Collection
+    {
+        return $this->genres;
+    }
+
+    public function addGenre(Genre $genre): self
+    {
+        if (!$this->genres->contains($genre)) {
+            $this->genres[] = $genre;
+            $genre->setManga($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGenre(Genre $genre): self
+    {
+        if ($this->genres->removeElement($genre)) {
+            // set the owning side to null (unless already changed)
+            if ($genre->getManga() === $this) {
+                $genre->setManga(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getRate(): ?float
+    {
+        return $this->rate;
+    }
+
+    public function setRate(?float $rate): self
+    {
+        $this->rate = $rate;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(?string $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }

@@ -32,7 +32,7 @@ if (document.getElementById('manga_title')) {
                 'X-RapidAPI-Host': 'jikan1.p.rapidapi.com'
             }
         };
-        // fetch the first page of manga
+        // fetch manga by name
         if (title != "") {
         fetch('https://api.jikan.moe/v4/manga?letter=' + title)
         .then(response => response.json())
