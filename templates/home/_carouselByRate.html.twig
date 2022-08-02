@@ -4,12 +4,14 @@
                 <div class="home_page_card_container">
                     <div class="row justify-content-center">
                         {% for mangaRate in mangasRating|slice(0,5) %}
-                            <div class="home_page_card">
-                                <div class="home_page_card_title">
-                                    <h6>{{ mangaRate.title}}</h6>
+                        <a href="{{ path('app_show', {id: mangaRate.id}) }}" class="card_link">
+                                <div class="home_page_card">
+                                    <div class="home_page_card_title">
+                                        <h6>{{ mangaRate.title}}</h6>
+                                    </div>
+                                    <img class="home_page_card_img_top" src="{{ asset(mangaRate.picture) }}">
                                 </div>
-                                <img class="home_page_card_img_top" src="{{ asset(mangaRate.picture) }}">
-                            </div>
+                            </a>
                         {% endfor %}
                     </div>
                 </div>
@@ -18,12 +20,14 @@
                 <div class="home_page_card_container row">
                     <div class="row justify-content-center">
                         {% for mangaRate in mangasRating|slice(5,5) %}
-                            <div class="home_page_card">
-                                <div class="home_page_card_title">
-                                    <h6>{{ mangaRate.title}}</h6>
+                            <a href="{{ path('app_show', {id: mangaRate.id}) }}" class="card_link">
+                                <div class="home_page_card">
+                                    <div class="home_page_card_title">
+                                        <h6>{{ mangaRate.title}}</h6>
+                                    </div>
+                                    <img class="home_page_card_img_top" src="{{ asset(mangaRate.picture) }}">
                                 </div>
-                                <img class="home_page_card_img_top" src="{{ asset(mangaRate.picture) }}">
-                            </div>
+                            </a>
                         {% endfor %}
                     </div>
                 </div>
@@ -32,12 +36,14 @@
                 <div class="home_page_card_container row">
                     <div class="row justify-content-center">
                         {% for mangaRate in mangasRating|slice(10,5) %}
-                            <div class="home_page_card">
-                                <div class="home_page_card_title">
-                                    <h6>{{ mangaRate.title}}</h6>
+                            <a href="{{ path('app_show', {id: mangaRate.id}) }}" class="card_link">
+                                <div class="home_page_card">
+                                    <div class="home_page_card_title">
+                                        <h6>{{ mangaRate.title}}</h6>
+                                    </div>
+                                    <img class="home_page_card_img_top" src="{{ asset(mangaRate.picture) }}">
                                 </div>
-                                <img class="home_page_card_img_top" src="{{ asset(mangaRate.picture) }}">
-                            </div>
+                            </a>
                         {% endfor %}
                     </div>
                 </div>
@@ -46,12 +52,14 @@
                 <div class="home_page_card_container row">
                     <div class="row justify-content-center">
                         {% for mangaRate in mangasRating|slice(15,5) %}
-                            <div class="home_page_card">
-                                <div class="home_page_card_title">
-                                    <h6>{{ mangaRate.title}}</h6>
+                            <a href="{{ path('app_show', {id: mangaRate.id}) }}" class="card_link">
+                                <div class="home_page_card">
+                                    <div class="home_page_card_title">
+                                        <h6>{{ mangaRate.title}}</h6>
+                                    </div>
+                                    <img class="home_page_card_img_top" src="{{ asset(mangaRate.picture) }}">
                                 </div>
-                                <img class="home_page_card_img_top" src="{{ asset(mangaRate.picture) }}">
-                            </div>
+                            </a>
                         {% endfor %}
                     </div>
                 </div>

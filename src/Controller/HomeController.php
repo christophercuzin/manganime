@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Manga;
 use App\Repository\MangaRepository;
 use App\service\MangasManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -21,6 +22,15 @@ class HomeController extends AbstractController
             'mangas' => $mangas,
             'mangasRating' => $mangasRating,
             'shounenMangas' => $shounenMangas,
+        ]);
+    }
+
+    #[Route('/show/{id}', name: 'app_show')]
+    public function Show(Manga $manga): Response
+    {
+        
+        return $this->render('home/show.html.twig', [
+            'manga' => $manga,
         ]);
     }
 }

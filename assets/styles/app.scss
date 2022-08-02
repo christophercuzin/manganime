@@ -3,5 +3,20 @@ $link-light: #F2F2F2;
 $danger: rgba(220, 53, 70, 0.75);
 @import "~bootstrap/scss/bootstrap";
 
+body {
+    header {
+        .websiteName {
+            color: $danger;
+        }
+        .user_email {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+    }
+}
 @import "adminPage.scss";
 @import "homePage.scss";
+@import "show.scss";

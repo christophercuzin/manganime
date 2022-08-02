@@ -1,0 +1,46 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Detail {{ manga.title }} {% endblock %}
+
+{% block body %}
+
+
+<main class="container-fluid">
+    <div class="container">
+        <div class="details_container">
+            <h1 class="details_manga_title"> {{ manga.title }} </h1>
+            <div class="details_img_container">
+                <img class="details_img" src="{{ asset(manga.picture) }}">
+            </div>
+            <div class="details">
+                <p><strong>Auteur:</strong> {{ manga.author }}</p>
+                {% if manga.numberOfVolumes is null %}
+                    <p><strong>Volumes:</strong> Indisponble </p>
+                {% else %}
+                    <p><strong>Volumes:</strong>{{ manga.numberOfVolumes }} </p>
+                {% endif %}
+                {% if manga.type is null %}
+                    <p><strong>Type:</strong> Indisponible </p>
+                {% else %}
+                    <p><strong>Type:</strong> {{ manga.type }} </p>
+                {% endif %}
+                 <p><strong>Genre:</strong>
+                {% for genre in manga.genres %}
+                    {{ genre.genre }} ,
+                {% endfor %}
+                </p>
+                {% if manga.rate is null %}
+                    <p><strong>Note:</strong> Indisponible </p>
+                {% else %}
+                    <p><strong>Note:</strong> {{ manga.rate }}/10 </p>
+                {% endif %} 
+            </div>
+        </div>
+        <div class="synopsis">
+            <h4>Synopsis</h4>
+            <hr>
+            <p> {{ manga.description }} </p>
+        </div>
+    </div>
+</main>
+{% endblock %}

@@ -1,16 +1,4 @@
 body {
-    header {
-        .websiteName {
-            color: $danger;
-        }
-        .user_email {
-            height: 100%;
-            display: flex;
-            align-items: center;
-            margin: 0;
-            padding: 0;
-        }
-    }
     .paging_container {
         display: flex;
         margin-top: 3rem;
@@ -40,7 +28,8 @@ body {
         display: flex;
         justify-content: center;
         margin-top: 10px;
-        .home_page_card {
+        .card_link {
+            width: 327px;
             width: 327px;
             min-height: 362px;
             margin: 5px;
@@ -50,26 +39,29 @@ body {
             padding: 0;
             background: $dark;
             border-radius: 10px;
-            .home_page_card_title{
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                min-height: 40px;
-                text-align: center;
-                margin: 0;
-                color: $danger;
-                h6 {
-                    margin-bottom: 0;
+            text-decoration: none;
+            .home_page_card {
+                .home_page_card_title{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    min-height: 40px;
+                    text-align: center;
+                    margin: 0;
+                    color: $danger;
+                    h6 {
+                        margin-bottom: 0;
+                    }
                 }
-            }
-            .home_page_card_img_top {
-                width: 325px;
-                height: 320px;
-                border-bottom-right-radius: 10px;
-                border-bottom-left-radius: 10px;
-            }
-            
-        } 
+                .home_page_card_img_top {
+                    width: 325px;
+                    height: 320px;
+                    border-bottom-right-radius: 10px;
+                    border-bottom-left-radius: 10px;
+                }
+                
+            } 
+        }
         
     }
     .carousel-control-prev {
