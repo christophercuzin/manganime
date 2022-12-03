@@ -10,8 +10,13 @@
         <form method="POST" class="form_manga col-lg-6 border rounded-4">
             <h1 class="text-center">Ajouter un nouveau manga</h1>
             <input type="hidden" id="number_of_volume_input" name="number_of_volume_input">
-            <label for="manga_title" class="form-label">Title</label>
-            <input type="text" class="form-control mb-3" name="manga_title" id="manga_title" placeholder="berserk" required>
+            <div class="dropdown">
+                <label for="manga_title" class="form-label">Title</label>
+                <input type="text" class="form-control mb-3 dropdown-toggle" name="manga_title" id="manga_title" placeholder="berserk" 
+                data-bs-display="static" aria-expanded="false" required>
+                    <ul class="dropdown-menu dropdown-menu-lg-start option-list bg-secondary bg-gradient" id="option-list">
+                    </ul>
+            </div>
 
             <label for="number_of_volume" class="form-label">Nombre de volume posséder</label>
             <input type="number" name="number_of_volume" class="form-control mb-3" id="number_of_volume" placeholder="24" min="0" required>
@@ -26,8 +31,6 @@
             <div class="row justify-content-center">
                 <div id="list_of_volume_container" class="text-center">
                     <p>Indiquez les volumes posséder</p>
-                </div>
-                <div id="buttonAddNewField" class="text-center">
                 </div>
             </div>
             <div class="col-12 text-center">

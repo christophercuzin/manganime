@@ -96,6 +96,11 @@ body {
         .listOfVolumeLabel {
             margin: 10px;
         }
+        .option-list {
+            padding: 10px;
+            max-height: 200px;
+            overflow: scroll;
+        }
     }
     tr {
         border: 1px solid black;

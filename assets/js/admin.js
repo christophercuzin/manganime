@@ -1,12 +1,16 @@
+import * as API_ENV from "../../config/packages/js.yaml";
+
 if (document.getElementById('card_container')) {
    const cardContainer = document.getElementById('card_container');
    const pageNumberButtons = document.querySelectorAll('.number_of_page_container [id]');
+   const apiEnv = API_ENV;
+   
+    
    // create connection to the api
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': 'fc47d97221msh17b6ad84ac6ce4fp170552jsnc448ea813ea2',
-            'X-RapidAPI-Host': 'jikan1.p.rapidapi.com'
+            apiEnv,
         }
     };
     // fetch the first page of manga
@@ -35,8 +39,7 @@ if (document.getElementById('card_container')) {
             const options = {
                 method: 'GET',
                 headers: {
-                    'X-RapidAPI-Key': 'fc47d97221msh17b6ad84ac6ce4fp170552jsnc448ea813ea2',
-                    'X-RapidAPI-Host': 'jikan1.p.rapidapi.com'
+                    apiEnv,
                 }
             };
             fetch('https://api.jikan.moe/v4/manga?type=manga&letter=' + title)

@@ -7,8 +7,8 @@
 
 <main class="container-fluid">
     <div class="container">
+        <h1 class="details_manga_title"> {{  manga.title }}</h1>
         <div class="details_container">
-            <h1 class="details_manga_title"> {{ manga.title }} </h1>
             <div class="details_img_container">
                 <img class="details_img" src="{{ asset(manga.picture) }}">
             </div>
@@ -34,6 +34,35 @@
                 {% else %}
                     <p><strong>Note:</strong> {{ manga.rate }}/10 </p>
                 {% endif %} 
+            </div>
+            <div class="add-manga">
+                <h5>Ajouter a ma liste</h5>
+                <hr>
+                <form method="POST" class="form_manga">
+            <input type="hidden" id="number_of_volume_input" name="number_of_volume_input">
+            <input type="hidden" class="form-control mb-3" name="manga_title" id="manga_title" value="{{  manga.title }}">
+
+            <label for="number_of_volume" class="form-label">Nombre de volume posséder</label>
+            <input type="number" name="number_of_volume" class="form-control mb-3" id="number_of_volume" placeholder="24" min="0" required>
+
+            <label for="status" class="form-label">Statut</label>
+            <select name="status" id="status" class="form-control mb-3" required>
+            <option value="">choisir une option</option>
+            <option value="en cours">Lecture en cours</option>
+            <option value="terminé">Terminé</option>
+            <option value="a lire">Je prevois de le lire</option>
+            </select>
+            <div class="row justify-content-center">
+                <div id="list_of_volume_container" class="text-center">
+                    <p>Indiquez les volumes posséder</p>
+                </div>
+                <div id="buttonAddNewField" class="text-center">
+                </div>
+            </div>
+            <div class="col-12 text-center">
+                <button type="submit" class="btn btn-primary col-lg-6 col-sm-6 mb-5" id="add_new_manga">Valider</button>
+            </div>
+        </form>
             </div>
         </div>
         <div class="synopsis">

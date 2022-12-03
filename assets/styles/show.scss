@@ -1,26 +1,26 @@
 body {
-    .details_container {
-        display: flex;
-        flex-wrap: wrap;
+    .details_manga_title {
+        width: 100%;
+        text-align: center;
+        background-color: $danger;
         border: 1px solid $dark;
+        border-bottom: none;
+        color: $dark;
         border-top-right-radius: 10px;
         border-top-left-radius: 10px;
-        border-bottom: none;
         margin-top: 50px;
-        .details_manga_title {
-            width: 100%;
-            text-align: center;
-            margin-bottom: 50px ;
-            background-color: $danger;
-            border-bottom: 1px solid $dark;
-            color: $dark;
-            border-top-right-radius: 10px;
-            border-top-left-radius: 10px;
-            
-        }
+        margin-bottom: 0;
+        
+    }
+    .details_container {
+        display: flex;
+        flex-wrap: nowrap;
+        border: 1px solid $dark;
+        border-bottom: none;
+        padding: 30px 30px 0px 30px;
         .details_img_container {
             width: 350px;
-            margin: 0 30px 30px 30px;
+            margin-right: 30px;
             .details_img {
                 width: 350px;
                 height: 450px;
@@ -29,7 +29,20 @@ body {
             }
         }
         .details {
-            width: 50%;
+            width: 40%;
+        }
+        .add-manga {
+            border: 1px solid $primary;
+            border-radius: 10px;
+            padding: 10px;
+            width: 30%;
+            overflow-y: scroll;
+            .form_manga {
+                overflow: hidden;
+            }
+            h5 {
+                text-align: center;
+            }
         }
     }
     .synopsis {
